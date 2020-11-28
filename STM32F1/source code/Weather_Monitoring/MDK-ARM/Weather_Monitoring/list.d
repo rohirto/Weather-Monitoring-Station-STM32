@@ -1,0 +1,12 @@
+weather_monitoring\list.o: ..\FreeRTOS\list.c
+weather_monitoring\list.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+weather_monitoring\list.o: ..\FreeRTOS\include\FreeRTOS.h
+weather_monitoring\list.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+weather_monitoring\list.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+weather_monitoring\list.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
+weather_monitoring\list.o: ..\FreeRTOS\include\projdefs.h
+weather_monitoring\list.o: ..\FreeRTOS\include\portable.h
+weather_monitoring\list.o: ..\FreeRTOS\include\deprecated_definitions.h
+weather_monitoring\list.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+weather_monitoring\list.o: ..\FreeRTOS\include\mpu_wrappers.h
+weather_monitoring\list.o: ..\FreeRTOS\include\list.h

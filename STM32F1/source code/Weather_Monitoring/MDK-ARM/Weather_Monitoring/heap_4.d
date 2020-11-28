@@ -1,0 +1,13 @@
+weather_monitoring\heap_4.o: ..\FreeRTOS\portable\MemMang\heap_4.c
+weather_monitoring\heap_4.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\FreeRTOS.h
+weather_monitoring\heap_4.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+weather_monitoring\heap_4.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\projdefs.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\portable.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\deprecated_definitions.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\mpu_wrappers.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\task.h
+weather_monitoring\heap_4.o: ..\FreeRTOS\include\list.h

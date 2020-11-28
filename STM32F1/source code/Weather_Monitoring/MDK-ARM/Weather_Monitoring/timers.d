@@ -1,0 +1,15 @@
+weather_monitoring\timers.o: ..\FreeRTOS\timers.c
+weather_monitoring\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\FreeRTOS.h
+weather_monitoring\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+weather_monitoring\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+weather_monitoring\timers.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\projdefs.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\portable.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\deprecated_definitions.h
+weather_monitoring\timers.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\mpu_wrappers.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\task.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\list.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\queue.h
+weather_monitoring\timers.o: ..\FreeRTOS\include\timers.h
