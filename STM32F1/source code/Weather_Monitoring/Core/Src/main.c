@@ -1,8 +1,9 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
+  * @file           : main.h
+  * @brief          : Header for main.c file.
+  *                   This file contains the common defines of the application.
   ******************************************************************************
   * @attention
   *
@@ -22,7 +23,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -55,11 +59,11 @@ UART_HandleTypeDef huart1;
 
 DMA_HandleTypeDef hdma_memtomem_dma1_channel2;
 /* USER CODE BEGIN PV */
+
 uint32_t coreClock_1 = 0;		/* Clock Variables */
 uint32_t coreClock_2 = 0;
 
 uint8_t Uart1RxBuf;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -71,7 +75,7 @@ static void MX_I2C1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
-void Clock_48MHz(void);  /* To change clock frequency to 48 MHz */
+void Clock_48MHz(void);
 extern void RTOS(void);	 /* External RTOS call function */
 /* USER CODE END PFP */
 
@@ -101,6 +105,8 @@ int main(void)
 
   /* Configure the system clock */
   SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
 	coreClock_1 = SystemCoreClock;
 	Clock_48MHz();
 	coreClock_2 = SystemCoreClock;
@@ -110,9 +116,6 @@ int main(void)
 	{
 		/* Not switched */
 	}
-
-  /* USER CODE BEGIN SysInit */
-
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -327,7 +330,7 @@ static void MX_USART1_UART_Init(void)
   }
   /* USER CODE BEGIN USART1_Init 2 */
 	HAL_NVIC_SetPriority(USART1_IRQn, 0,0);
-	HAL_NVIC_EnableIRQ(USART1_IRQn);
+	HAL_NVIC_EnableIRQ(USART1_IRQn);	
   /* USER CODE END USART1_Init 2 */
 
 }

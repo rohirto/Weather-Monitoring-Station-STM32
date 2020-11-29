@@ -6,10 +6,11 @@
 "weather_monitoring\timers.o"
 "weather_monitoring\port.o"
 "weather_monitoring\heap_4.o"
+"weather_monitoring\freertos_user.o"
+"weather_monitoring\debug.o"
 "weather_monitoring\main.o"
 "weather_monitoring\stm32f1xx_it.o"
 "weather_monitoring\stm32f1xx_hal_msp.o"
-"weather_monitoring\freertos_user.o"
 "weather_monitoring\stm32f1xx_hal_gpio_ex.o"
 "weather_monitoring\stm32f1xx_hal_adc.o"
 "weather_monitoring\stm32f1xx_hal_adc_ex.o"
@@ -29,6 +30,7 @@
 "weather_monitoring\stm32f1xx_hal_tim_ex.o"
 "weather_monitoring\stm32f1xx_hal_uart.o"
 "weather_monitoring\system_stm32f1xx.o"
+"weather_monitoring\dht11.o"
 --library_type=microlib --strict --scatter "Weather_Monitoring\Weather_Monitoring.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

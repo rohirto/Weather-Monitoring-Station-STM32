@@ -1,4 +1,4 @@
-weather_monitoring\freertos_user.o: freertos_user.c
+weather_monitoring\freertos_user.o: ..\User\src\freertos_user.c
 weather_monitoring\freertos_user.o: ../Core/Inc/main.h
 weather_monitoring\freertos_user.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 weather_monitoring\freertos_user.o: ../Core/Inc/stm32f1xx_hal_conf.h
@@ -30,7 +30,11 @@ weather_monitoring\freertos_user.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1x
 weather_monitoring\freertos_user.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 weather_monitoring\freertos_user.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 weather_monitoring\freertos_user.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+weather_monitoring\freertos_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 weather_monitoring\freertos_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+weather_monitoring\freertos_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+weather_monitoring\freertos_user.o: ..\User\inc\sensors.h
+weather_monitoring\freertos_user.o: ..\User\inc\debug.h
 weather_monitoring\freertos_user.o: ..\FreeRTOS\include\FreeRTOS.h
 weather_monitoring\freertos_user.o: ..\FreeRTOS\portable\RVDS\ARM_CM3\FreeRTOSConfig.h
 weather_monitoring\freertos_user.o: ..\FreeRTOS\include\projdefs.h

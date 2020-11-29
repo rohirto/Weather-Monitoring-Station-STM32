@@ -32,8 +32,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -76,8 +78,7 @@ void Error_Handler(void);
 #define SDA_Pin GPIO_PIN_7
 #define SDA_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-#define UART1_MAX_RX_BUFFER_LENGTH	100
-#define UART1_MAX_TX_BUFFER_LENGTH	100
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
