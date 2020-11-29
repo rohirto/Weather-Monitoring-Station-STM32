@@ -1,0 +1,2 @@
+Got this item from a discarded Powerbank. 
+Through Experiments found out that Peak DC voltage is 6V, current 150mA
