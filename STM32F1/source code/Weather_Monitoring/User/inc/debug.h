@@ -25,6 +25,7 @@ extern uint8_t pcDebugBuffer[50];
 
 /* Function Prototypes */
 void prvDebug_Task (void* pvParameters);
+void Debug_Print(unsigned char *pcMessage);
 #ifdef __cplusplus
 extern "C" {
 #endif

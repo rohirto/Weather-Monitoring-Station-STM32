@@ -28,4 +28,6 @@ weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm
 weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 weather_monitoring\stm32f1xx_hal_uart.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h

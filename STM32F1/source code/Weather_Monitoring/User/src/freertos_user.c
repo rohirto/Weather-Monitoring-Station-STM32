@@ -22,6 +22,7 @@
 
 /* Exten handles */
 extern UART_HandleTypeDef huart1;
+extern TIM_HandleTypeDef htim2;
 /* Function Prototypes */
 void RTOS(void);  /* Function call from the main */
 void togglePin(void* pvParameters);
@@ -29,6 +30,9 @@ void togglePin(void* pvParameters);
 /* Private Global Variables */
 //uint8_t tx_string[] = "Hello World";
 
+/* Task Handler */
+xTaskHandle DHT11_Task_Handler;
+xSemaphoreHandle DHT_SEM;
 
 /**
 * @brief RTOS entry code 
@@ -43,13 +47,15 @@ void RTOS()
 	
 	if( (xDebugQueue != NULL))
 	{
+		DHT_SEM = xSemaphoreCreateBinary();
 		/* Simple blinky Example */
 		xTaskCreate(togglePin, "TogglePin", 128, NULL, 2, NULL); 
-		xTaskCreate(DHT11_Get_data , "DHT11Data", 400, NULL, 2, NULL);  
-		xTaskCreate(prvDebug_Task, "Debug Task" ,128, NULL, 2, NULL); 
+		xTaskCreate(DHT11_Task , "DHT11", 128, NULL, 1, &DHT11_Task_Handler);  
+		//xTaskCreate(prvDebug_Task, "Debug Task" ,128, NULL, 2, NULL); 
 		
-		
-		
+		/* Start the DHT11 Timer*/
+		HAL_TIM_Base_Start(&htim2);
+			
 		/* Start The Scheduler */
 		vTaskStartScheduler();
 	}
