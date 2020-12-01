@@ -36,7 +36,6 @@ weather_monitoring\freertos_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 weather_monitoring\freertos_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 weather_monitoring\freertos_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 weather_monitoring\freertos_user.o: ..\User\inc\sensors.h
-weather_monitoring\freertos_user.o: ..\User\inc\debug.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 weather_monitoring\freertos_user.o: ../Core/Inc/FreeRTOSConfig.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
@@ -49,3 +48,4 @@ weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/i
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+weather_monitoring\freertos_user.o: ..\User\inc\debug.h

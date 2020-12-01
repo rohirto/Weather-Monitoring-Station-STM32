@@ -45,7 +45,7 @@ weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
-weather_monitoring\dht11.o: ..\User\inc\debug.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+weather_monitoring\dht11.o: ..\User\inc\debug.h

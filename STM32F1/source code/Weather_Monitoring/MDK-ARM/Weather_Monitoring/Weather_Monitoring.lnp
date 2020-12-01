@@ -27,6 +27,7 @@
 "weather_monitoring\stm32f1xx_hal_uart.o"
 "weather_monitoring\system_stm32f1xx.o"
 "weather_monitoring\dht11.o"
+"weather_monitoring\gp2y101.o"
 "weather_monitoring\croutine.o"
 "weather_monitoring\event_groups.o"
 "weather_monitoring\list_1.o"

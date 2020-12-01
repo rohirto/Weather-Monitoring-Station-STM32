@@ -15,7 +15,9 @@
 
 /* Global Variables */
 uint8_t pcDebugBuffer[50];
-QueueHandle_t xDebugQueue;  
+QueueHandle_t xDebugQueue; 
+SemaphoreHandle_t xDebugQueueMutex; 
+SemaphoreHandle_t xUART1Mutex;
 
 /* Exten handles */
 extern UART_HandleTypeDef huart1;
@@ -55,10 +57,14 @@ void prvDebug_Task (void* pvParameters)
 */ 
 void Debug_Print(unsigned char *pcMessage) 
 {
+	/* Mutex to protect printing */
+    xSemaphoreTake(xUART1Mutex, portMAX_DELAY);
 	//if(huart1.gState == HAL_UART_STATE_READY)
 	
 		HAL_UART_Transmit(&huart1, (uint8_t*) pcMessage, strlen((const char *)pcMessage), 1000);
     //huart1.uartBytereceived = RESET;
+	/* Give back the Mutex */
+    xSemaphoreGive( xUART1Mutex ); 
 	
 }
 #endif

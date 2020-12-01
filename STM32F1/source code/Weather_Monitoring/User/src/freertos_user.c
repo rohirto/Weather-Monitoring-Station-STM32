@@ -22,7 +22,7 @@
 
 /* Exten handles */
 extern UART_HandleTypeDef huart1;
-extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim2, htim3;
 /* Function Prototypes */
 void RTOS(void);  /* Function call from the main */
 void togglePin(void* pvParameters);
@@ -33,6 +33,9 @@ void togglePin(void* pvParameters);
 /* Task Handler */
 xTaskHandle DHT11_Task_Handler;
 xSemaphoreHandle DHT_SEM;
+xSemaphoreHandle GP2Y101_SEM;
+SemaphoreHandle_t xTimerMutex;
+xTaskHandle GP2Y101_Task_Handler;
 
 /**
 * @brief RTOS entry code 
@@ -44,17 +47,22 @@ xSemaphoreHandle DHT_SEM;
 void RTOS()
 {
 	xDebugQueue = xQueueCreate( 10, 4);
+	xDebugQueueMutex = xSemaphoreCreateMutex();
+	xUART1Mutex = xSemaphoreCreateMutex();	
+	xTimerMutex = xSemaphoreCreateMutex();
 	
-	if( (xDebugQueue != NULL))
+	if( (xDebugQueue != NULL) & (xDebugQueueMutex != NULL) & (xUART1Mutex != NULL) &
+			(xTimerMutex != NULL))
 	{
 		DHT_SEM = xSemaphoreCreateBinary();
 		/* Simple blinky Example */
 		xTaskCreate(togglePin, "TogglePin", 128, NULL, 2, NULL); 
-		xTaskCreate(DHT11_Task , "DHT11", 128, NULL, 1, &DHT11_Task_Handler);  
-		//xTaskCreate(prvDebug_Task, "Debug Task" ,128, NULL, 2, NULL); 
-		
+		xTaskCreate(DHT11_Task , "DHT11", 128, NULL, 2, &DHT11_Task_Handler);  
+		xTaskCreate(prvDebug_Task, "Debug Task" ,128, NULL, 1, NULL); 
+		xTaskCreate(GP2Y101_Task, "GP2Y101", 128, NULL, 2,  &GP2Y101_Task_Handler); 
 		/* Start the DHT11 Timer*/
 		HAL_TIM_Base_Start(&htim2);
+		HAL_TIM_Base_Start(&htim3);
 			
 		/* Start The Scheduler */
 		vTaskStartScheduler();
@@ -68,13 +76,9 @@ void RTOS()
   */
 void togglePin(void* pvParameters)
 {
-	#ifdef DEBUG
-	uint8_t* debug_messagePtr;
-	#endif
 	for(;;)
 	{
 		HAL_GPIO_TogglePin(BUILTIN_LED_GPIO_Port, BUILTIN_LED_Pin);
 		vTaskDelay(pdMS_TO_TICKS(5000));
-		//HAL_UART_Transmit_IT(&huart1, (uint8_t *)tx_string, sizeof(tx_string));
 	} 
 }
