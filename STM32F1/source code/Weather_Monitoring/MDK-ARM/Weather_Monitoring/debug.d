@@ -1,5 +1,4 @@
 weather_monitoring\debug.o: ..\User\src\debug.c
-weather_monitoring\debug.o: ../Core/Inc/main.h
 weather_monitoring\debug.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 weather_monitoring\debug.o: ../Core/Inc/stm32f1xx_hal_conf.h
 weather_monitoring\debug.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
@@ -32,9 +31,6 @@ weather_monitoring\debug.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_sp
 weather_monitoring\debug.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 weather_monitoring\debug.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 weather_monitoring\debug.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-weather_monitoring\debug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-weather_monitoring\debug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-weather_monitoring\debug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 weather_monitoring\debug.o: ..\User\inc\debug.h
 weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 weather_monitoring\debug.o: ../Core/Inc/FreeRTOSConfig.h
@@ -48,3 +44,9 @@ weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/l
 weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
+weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\debug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+weather_monitoring\debug.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+weather_monitoring\debug.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

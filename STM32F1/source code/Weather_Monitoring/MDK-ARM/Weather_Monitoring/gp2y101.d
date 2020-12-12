@@ -48,4 +48,8 @@ weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include
 weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+weather_monitoring\gp2y101.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 weather_monitoring\gp2y101.o: ..\User\inc\debug.h
+weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
+weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h

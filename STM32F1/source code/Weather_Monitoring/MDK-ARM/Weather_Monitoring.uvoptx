@@ -250,7 +250,16 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
+<<<<<<< Updated upstream
           <ItemText>0xE000ED24</ItemText>
+=======
+          <ItemText>pressure</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>temperature_bmp</ItemText>
+>>>>>>> Stashed changes
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
@@ -274,6 +283,19 @@
           <WinNumber>2</WinNumber>
           <ItemText>bmp280</ItemText>
         </Ww>
+<<<<<<< Updated upstream
+=======
+        <Ww>
+          <count>4</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>global_pressure</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>global_temperature_bmp</ItemText>
+        </Ww>
+>>>>>>> Stashed changes
       </WatchWindow2>
       <MemoryWindow1>
         <Mm>
@@ -325,7 +347,15 @@
         </Entry>
         <Entry>
           <Name>System Viewer\I2C1</Name>
+<<<<<<< Updated upstream
           <WinId>35904</WinId>
+=======
+          <WinId>35902</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\NVIC</Name>
+          <WinId>35903</WinId>
+>>>>>>> Stashed changes
         </Entry>
       </SystemViewers>
       <DebugDescription>
@@ -730,8 +760,13 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+<<<<<<< Updated upstream
       <PathWithFileName>..\User\src\BMP280.c</PathWithFileName>
       <FilenameWithoutPath>BMP280.c</FilenameWithoutPath>
+=======
+      <PathWithFileName>..\User\src\bmp280.c</PathWithFileName>
+      <FilenameWithoutPath>bmp280.c</FilenameWithoutPath>
+>>>>>>> Stashed changes
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

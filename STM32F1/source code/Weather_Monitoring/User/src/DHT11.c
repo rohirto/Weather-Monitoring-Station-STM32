@@ -77,9 +77,12 @@ void DHT11_Task(void* pvParams)
   */
 void DHT_Delay (uint16_t time)
 {
+		/* Mutex to protect printing */
+    xSemaphoreTake(xTimerMutex, portMAX_DELAY);
 	/* change your code here for the delay in microseconds */
 	__HAL_TIM_SET_COUNTER(DHT_TIMER, 0);
 	while ((__HAL_TIM_GET_COUNTER(DHT_TIMER))<time);
+	xSemaphoreGive( xTimerMutex );
 }
 
 

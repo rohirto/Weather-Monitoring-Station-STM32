@@ -32,11 +32,14 @@ void togglePin(void* pvParameters);
 
 /* Task Handler */
 xTaskHandle DHT11_Task_Handler;
+xTaskHandle BMP280_Task_Handler;
 xSemaphoreHandle DHT_SEM;
 xSemaphoreHandle GP2Y101_SEM;
+SemaphoreHandle_t xMu_ADC1_MB;
 SemaphoreHandle_t xTimerMutex;
 xTaskHandle GP2Y101_Task_Handler;
-
+SemaphoreHandle_t xI2CMutex;
+BaseType_t xStatus;
 /**
 * @brief RTOS entry code 
 * @param none
@@ -50,17 +53,41 @@ void RTOS()
 	xDebugQueueMutex = xSemaphoreCreateMutex();
 	xUART1Mutex = xSemaphoreCreateMutex();	
 	xTimerMutex = xSemaphoreCreateMutex();
+	xI2CMutex = xSemaphoreCreateMutex();
+	xMu_ADC1_MB = xSemaphoreCreateMutex();
+	unsigned char* pcMessage = pcDebugBuffer;
 	
 	if( (xDebugQueue != NULL) & (xDebugQueueMutex != NULL) & (xUART1Mutex != NULL) &
-			(xTimerMutex != NULL))
+			(xTimerMutex != NULL) & (xI2CMutex != NULL) & (xMu_ADC1_MB != NULL))
 	{
-		DHT_SEM = xSemaphoreCreateBinary();
 		/* Simple blinky Example */
-		xTaskCreate(togglePin, "TogglePin", 128, NULL, 2, NULL); 
-		xTaskCreate(DHT11_Task , "DHT11", 128, NULL, 2, &DHT11_Task_Handler);  
-		xTaskCreate(prvDebug_Task, "Debug Task" ,128, NULL, 1, NULL); 
-		xTaskCreate(GP2Y101_Task, "GP2Y101", 128, NULL, 2,  &GP2Y101_Task_Handler); 
-		/* Start the DHT11 Timer*/
+//		if(xTaskCreate(togglePin, "TogglePin", 128, NULL, 2, NULL) == errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY)
+//		{
+//			sprintf((char *)pcDebugBuffer, "Toogle Task failed  \n");
+//		}	
+		if(xTaskCreate(DHT11_Task , "DHT11", 128, NULL, 2, &DHT11_Task_Handler) == errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY)
+		{
+			sprintf((char *)pcDebugBuffer, "DHT11_Task failed  \n");
+		}
+		else if(xTaskCreate(BMP280_Task, "BMP280", 128, NULL, 2, &BMP280_Task_Handler) == errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY)
+		{
+			sprintf((char *)pcDebugBuffer, "BMP280 failed  \n");
+		}
+		else if(xTaskCreate(prvDebug_Task, "Debug Task" ,128, NULL, 1, NULL) == errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY)
+		{
+			sprintf((char *)pcDebugBuffer, "Debug Task failed  \n");
+		}
+		else if(xTaskCreate(GP2Y101_Task, "GP2Y101", 128, NULL, 2,  &GP2Y101_Task_Handler) == errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY)
+		{
+			sprintf((char *)pcDebugBuffer, "GP2Y101 failed  \n");
+		}
+		
+		else
+		{
+			sprintf((char *)pcDebugBuffer, "All tasks created successfully!  \n");
+		}
+		HAL_UART_Transmit(&huart1,(uint8_t*) pcMessage, strlen((const char *)pcMessage), 100);
+		/* Start the DHT11 Timer*/ 
 		HAL_TIM_Base_Start(&htim2);
 		HAL_TIM_Base_Start(&htim3);
 			

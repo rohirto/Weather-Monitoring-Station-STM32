@@ -9,23 +9,31 @@
 **/
 
 /* Includes */
-#include "main.h"
+#include "stm32f1xx_hal.h"
 #include "debug.h"
-
+#include <stdio.h>
+#include <string.h>
+#include "FreeRTOS.h"
+#include "task.h"
+#include "timers.h"
+#include "queue.h"
+#include "semphr.h"
+#include "list.h"
+#include "croutine.h"
 
 /* Global Variables */
 uint8_t pcDebugBuffer[50];
 QueueHandle_t xDebugQueue; 
 SemaphoreHandle_t xDebugQueueMutex; 
 SemaphoreHandle_t xUART1Mutex;
-
+char pcSystemStatusBuff[150];
+ 
 /* Exten handles */
 extern UART_HandleTypeDef huart1;
 
 /* Function PTs */
 void Debug_Print(unsigned char *);
 
-#ifdef DEBUG
 void prvDebug_Task (void* pvParameters)
 {
 	unsigned char* pcMessage;
@@ -67,4 +75,20 @@ void Debug_Print(unsigned char *pcMessage)
     xSemaphoreGive( xUART1Mutex ); 
 	
 }
-#endif
+
+
+void System_Status(void *pvParameters)
+{
+//  uint8_t* debug_messagePtr;
+    for(;;)
+    {    
+        
+       // vTaskList(pcSystemStatusBuff);
+         
+        /* Delay */
+        vTaskDelay(pdMS_TO_TICKS(20000));
+       
+       
+   }
+}
+

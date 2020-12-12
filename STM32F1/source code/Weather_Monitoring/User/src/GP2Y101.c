@@ -31,6 +31,7 @@ void GP2Y101_Delay (uint16_t time);
 
 /* RTOS */
 extern xSemaphoreHandle GP2Y101_SEM;
+extern SemaphoreHandle_t xMu_ADC1_MB;
 
 /* Sensor related Global Variables */
 
@@ -49,24 +50,12 @@ void GP2Y101_Task(void *pvParams)
 	int indx = 1;
 	for(;;)
 	{
-		//if(xSemaphoreTake(GP2Y101_SEM, 2500) != pdTRUE)
-		if(0)
-		{
-			/* Semaphore Take Fail */
-			sprintf((char *)pcDebugBuffer, "Semaphore GP2Y Failed");
-			Debug_Mutex();  /* Sends the data to the Debug Queue */ 
-		}
-		else
-		{
-			/* Get the data */
-			AQI = GP2Y101_GetData();
-			sprintf((char*)pcDebugBuffer, "%d. AQI = %f ug/m3\n", indx, AQI);
-			Debug_Mutex();
-			indx++;
-			
-			
-		}
-		//xSemaphoreGive(GP2Y101_SEM);
+
+		/* Get the data */
+		AQI = GP2Y101_GetData();
+		sprintf((char*)pcDebugBuffer, "%d. AQI = %f ug/m3\n", indx, AQI);
+		indx++;
+		Debug_Mutex();  /* Sends the data to the Debug Queue */ 
 		/* Run Task for every 5 secs */
 		vTaskDelay(pdMS_TO_TICKS(5000));
 	}
@@ -87,20 +76,30 @@ void AQI_LED_OFF()
 float GP2Y101_GetData( void ) 
 {
 	float voltageMeasured = 0, calcVoltage = 0, dustDensity = 0;
+	/* Take the Mutex */
+	xSemaphoreTake(xMu_ADC1_MB, portMAX_DELAY);
 	/* Turn On the  LED*/
-	AQI_LED_OFF();
+	AQI_LED_ON();
 	GP2Y101_Delay(SAMPLINGTIME);    
 	/* Sample value */
-	HAL_ADC_Start_DMA(GP2Y101_ANALOG, &ADC_Store, NO_OF_CHANNELS);
+	//HAL_ADC_Start_DMA(GP2Y101_ANALOG, &ADC_Store, NO_OF_CHANNELS);
+	/* Without DMA */
+	
+	HAL_ADC_Start(GP2Y101_ANALOG);
+	ADC_Store = HAL_ADC_GetValue(GP2Y101_ANALOG);
+	HAL_ADC_Stop(GP2Y101_ANALOG);
+	
 	GP2Y101_Delay(DELTATIME);
 	/* Turn Off the LED */
-	AQI_LED_ON();
+	AQI_LED_OFF(); 
 	GP2Y101_Delay(SLEEPTIME);
 	
+	/* Give back the Mutex */
+	xSemaphoreGive( xMu_ADC1_MB );
 	/* Assuming ADC to be in 12 Bit Mode */
 	/* Can check ADC1 CFGR1 Register */
 	voltageMeasured = ADC_Store;
-	calcVoltage = voltageMeasured * (3.3 / 1024.0); 
+	calcVoltage = voltageMeasured * (5 / 1024.0); 
 	dustDensity = 170 * calcVoltage - 0.1;  //in microgram per meter cube
 	
 	return dustDensity;

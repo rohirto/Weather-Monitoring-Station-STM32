@@ -22,23 +22,25 @@ Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
 C:\Users\rohirto\Desktop\rohirto\Weather Monitoring Station\Weather-Monitoring-Station-STM32\STM32F1\source code\Weather_Monitoring\MDK-ARM\Weather_Monitoring.uvprojx
-Project File Date:  12/01/2020
+Project File Date:  12/12/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Weather_Monitoring'
-compiling GP2Y101.c...
-..\User\inc\sensors.h(66): warning:  #1-D: last line of file ends without a newline
+compiling bmp280.c...
+..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
   	
-..\User\inc\debug.h(47): warning:  #1-D: last line of file ends without a newline
+..\User\inc\sensors.h(263): warning:  #1-D: last line of file ends without a newline
   	
-..\User\src\GP2Y101.c(154): warning:  #1-D: last line of file ends without a newline
-  }
-..\User\src\GP2Y101.c: 3 warnings, 0 errors
+..\User\src\bmp280.c(46): warning:  #177-D: variable "size" was declared but never referenced
+  	uint16_t size;
+..\User\src\bmp280.c(80): warning:  #177-D: variable "bme280p" was declared but never referenced
+  	bool bme280p = bmp280.id == BME280_CHIP_ID;
+..\User\src\bmp280.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=21792 RO-data=292 RW-data=196 ZI-data=8340  
+Program Size: Code=24676 RO-data=292 RW-data=216 ZI-data=13008  
 FromELF: creating hex file...
-"Weather_Monitoring\Weather_Monitoring.axf" - 0 Error(s), 3 Warning(s).
+"Weather_Monitoring\Weather_Monitoring.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 

@@ -543,9 +543,15 @@
               <FilePath>..\User\src\GP2Y101.c</FilePath>
             </File>
             <File>
+<<<<<<< Updated upstream
               <FileName>BMP280.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\src\BMP280.c</FilePath>
+=======
+              <FileName>bmp280.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\src\bmp280.c</FilePath>
+>>>>>>> Stashed changes
             </File>
           </Files>
         </Group>
