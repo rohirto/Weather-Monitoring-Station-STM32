@@ -31,21 +31,21 @@
 #include "main.h"
 #include "debug.h"
 #include "sensors.h"
+#include "mqtt_client.h"
 
 /* Global Variables */
 float pressure, temperature, humidity;
-
+BMP280_HandleTypedef bmp280;
 /* Externs */
-extern BMP280_HandleTypedef bmp280;
+
 extern UART_HandleTypeDef huart1; 
 extern I2C_HandleTypeDef hi2c1;
+extern ESP_handle wifi_module;
 
 
 void BMP280_Task(void *pvParams)
 {
-	uint16_t size;
 	uint8_t* debug_messagePtr;
-	int indx = 1;
 	while(1)
   {
     /* USER CODE END WHILE */
@@ -57,11 +57,28 @@ void BMP280_Task(void *pvParams)
 			Debug_Mutex();
 			//HAL_Delay(2000);
 		}
-		sprintf((char *)pcDebugBuffer,"%d. Pressure: %.2f Pa, Temperature: %.2f C \n",indx, pressure, temperature);
+		sprintf((char *)pcDebugBuffer,"Pressure: %.2f Pa, Temperature: %.2f C \n",pressure, temperature);
 		Debug_Mutex();
-		indx++;
-		
-		vTaskDelay(pdMS_TO_TICKS(5000));
+		/* Publish Data */
+		if(wifi_module.publish_flag == false && wifi_module.mqtt_connected == true && wifi_module.command_code == IDLE
+			&& wifi_module.publish_indx == TEMPERATURE_INDEX)
+		{
+			sprintf((char*)wifi_module.topic,"%s",MQTT_TEMPERATURE_TOPIC);
+			wifi_module.topic_len = strlen(wifi_module.topic);
+			sprintf((char*)wifi_module.topic,"%s%f",MQTT_TEMPERATURE_TOPIC, temperature);
+			wifi_module.publish_flag = true;
+			wifi_module.publish_indx = HUMIDITY_INDEX;
+		}
+		if(wifi_module.publish_flag == false && wifi_module.mqtt_connected == true && wifi_module.command_code == IDLE
+				&& wifi_module.publish_indx == PRESSURE_INDEX)
+			{
+				sprintf((char*)wifi_module.topic,"%s",MQTT_PRESSURE_TOPIC);
+				wifi_module.topic_len = strlen(wifi_module.topic);
+				sprintf((char*)wifi_module.topic,"%s%f",MQTT_PRESSURE_TOPIC, pressure);
+				wifi_module.publish_flag = true;
+				wifi_module.publish_indx = AQI_INDEX;
+			}
+		vTaskDelay(pdMS_TO_TICKS(20000));
   }
 }
 

@@ -261,3 +261,6 @@ HAL_StatusTypeDef BMP280_ReadFloat24(BMP280_HandleTypedef *dev, float *temperatu
 HAL_StatusTypeDef BMP_Read_data24(BMP280_HandleTypedef *dev, uint8_t addr, int32_t *value);
 #endif
 	
+	
+	
+	

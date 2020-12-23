@@ -25,6 +25,8 @@
 /* USER CODE BEGIN Includes */
 #include "sensors.h"
 #include "debug.h"
+#include "WiFiComm.h"
+#include "UartRingbuffer_multi.h"     
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,15 +54,16 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart3;
+
 
 /* USER CODE BEGIN PV */
 
 uint32_t coreClock_1 = 0;		/* Clock Variables */
 uint32_t coreClock_2 = 0;
-
-uint8_t Uart1RxBuf;
-BMP280_HandleTypedef bmp280;  
-
+uint8_t c1,c2;
+//extern uint8_t Uart3RxBuf[RCMD_MAX_SIZE];
+//extern uint8_t Uart3TxBuf[CMD_MAX_SIZE]; 
 uint16_t size;
 /* USER CODE END PV */
 
@@ -73,6 +76,7 @@ static void MX_SPI2_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN PFP */
 void Clock_48MHz(void);
@@ -81,7 +85,10 @@ extern void RTOS(void);	 /* External RTOS call function */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#define pc_uart &huart1
+#define wifi_uart &huart3
 
+char buffer[10];
 /* USER CODE END 0 */
 
 /**
@@ -126,19 +133,25 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
+  MX_USART3_UART_Init();
+	Ringbuf_init ();
   /* USER CODE BEGIN 2 */
-	HAL_UART_Receive_IT(&huart1, &Uart1RxBuf, 1);	/* Enable Interrupt for USART RECEIVE*/
-	
+	//HAL_UART_Receive_IT(&huart1, &c1, 1);	/* Enable Interrupt for USART RECEIVE*/
+	//HAL_UART_Receive_IT(&huart3, &c2, 1);	/* Enable Interrupt for USART RECEIVE*/
 	/* Sensors Init */
 	if(GP2Y101_Init(GP2Y101_ANALOG) != HAL_OK)
 	{
 		/* Error Handler */
-		while(1);
+		Error_Handler();
 	} 
 	if(BMP280_Init() != HAL_OK)
 	{
 		/*Error */ 
-		while(1);
+		Error_Handler();
+	}
+	if(ESP_Init() != HAL_OK) 
+	{
+		Error_Handler();
 	}
 	
 	
@@ -146,6 +159,7 @@ int main(void)
 	RTOS();
   /* USER CODE END 2 */
 
+ 
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -163,7 +177,6 @@ int main(void)
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
-  /* Create the thread(s) */
  
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -171,16 +184,26 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
-  /* USER CODE END RTOS_EVENTS */
-
+  
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+//    /* USER CODE END WHILE */
+//		/* USER CODE END WHILE */
+//    if (IsDataAvailable(pc_uart))
+//    {
+//     int data = Uart_read(pc_uart);
+//     Uart_write(data, wifi_uart);
+//    }
 
+//    if (IsDataAvailable(wifi_uart))
+//    {
+//     int data = Uart_read(wifi_uart);
+//     Uart_write(data, pc_uart);
+//    }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -465,10 +488,47 @@ static void MX_USART1_UART_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN USART1_Init 2 */
-	HAL_NVIC_SetPriority(USART1_IRQn, 0,0);
-	HAL_NVIC_EnableIRQ(USART1_IRQn);	
+  /* USER CODE BEGIN USART1_Init 2 */	
   /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
+  * @brief USART3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART3_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART3_Init 0 */
+
+  /* USER CODE END USART3_Init 0 */
+
+  /* USER CODE BEGIN USART3_Init 1 */
+
+  /* USER CODE END USART3_Init 1 */
+  huart3.Instance = USART3;
+  huart3.Init.BaudRate = 57600;
+  huart3.Init.WordLength = UART_WORDLENGTH_8B;
+  huart3.Init.StopBits = UART_STOPBITS_1;
+  huart3.Init.Parity = UART_PARITY_NONE;
+  huart3.Init.Mode = UART_MODE_TX_RX;
+  huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart3.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART3_Init 2 */
+	
+	
+	/* Enable Interrupts */
+	
+	/* Initialize the UART State */
+
+	
+  /* USER CODE END USART3_Init 2 */
 
 }
 
@@ -527,10 +587,19 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	if( huart->Instance == USART1)
 	{
 		/* Transmit that data back - ECHO Function */
-		HAL_UART_Transmit(&huart1, &Uart1RxBuf, sizeof(Uart1RxBuf), 100);
+		HAL_UART_Transmit(&huart3, &c1, 1, 100);
 		
 		/* Recieve 1 Byte in Interrupt Mode */
-		HAL_UART_Receive_IT(&huart1, &Uart1RxBuf, 1);
+		HAL_UART_Receive_IT(&huart1, &c1, 1);
+		
+	}
+	if(huart->Instance == USART3)
+	{
+		/* Transmit that data back - ECHO Function */
+		HAL_UART_Transmit(&huart1, &c2, 1, 100);
+		
+		HAL_UART_Receive_IT(&huart3, &c2, 1);
+		
 	}
 }
 /**

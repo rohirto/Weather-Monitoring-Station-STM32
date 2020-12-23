@@ -7,6 +7,7 @@
 "weather_monitoring\stm32f1xx_it.o"
 "weather_monitoring\stm32f1xx_hal_msp.o"
 "weather_monitoring\stm32f1xx_hal_timebase_tim.o"
+"weather_monitoring\uartringbuffer_multi.o"
 "weather_monitoring\stm32f1xx_hal_gpio_ex.o"
 "weather_monitoring\stm32f1xx_hal_adc.o"
 "weather_monitoring\stm32f1xx_hal_adc_ex.o"
@@ -39,6 +40,8 @@
 "weather_monitoring\cmsis_os2.o"
 "weather_monitoring\heap_4.o"
 "weather_monitoring\port.o"
+"weather_monitoring\wificomm.o"
+"weather_monitoring\mqtt_client.o"
 --library_type=microlib --strict --scatter "Weather_Monitoring\Weather_Monitoring.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -17,6 +17,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
+#include "mqtt_client.h"
 
 
 uint32_t ADC_Store; 
@@ -24,7 +25,7 @@ uint32_t ADC_Store;
 extern DMA_HandleTypeDef hdma_adc1;
 extern ADC_HandleTypeDef hadc1;
 extern TIM_HandleTypeDef htim3;
-
+extern ESP_handle wifi_module;
 void AQI_LED_ON(void );
 void AQI_LED_OFF(void );
 void GP2Y101_Delay (uint16_t time);
@@ -47,17 +48,25 @@ void GP2Y101_Task(void *pvParams)
 {
 	uint8_t* debug_messagePtr;
 	float AQI = 0;
-	int indx = 1;
 	for(;;)
 	{
 
 		/* Get the data */
 		AQI = GP2Y101_GetData();
-		sprintf((char*)pcDebugBuffer, "%d. AQI = %f ug/m3\n", indx, AQI);
-		indx++;
+		sprintf((char*)pcDebugBuffer, "AQI = %f ug/m3\n",AQI);
 		Debug_Mutex();  /* Sends the data to the Debug Queue */ 
+		/* Publish Data */
+		if(wifi_module.publish_flag == false && wifi_module.mqtt_connected == true && wifi_module.command_code == IDLE
+				&& wifi_module.publish_indx == AQI_INDEX)
+			{
+				sprintf((char*)wifi_module.topic,"%s",MQTT_AQI_TOPIC);
+				wifi_module.topic_len = strlen(wifi_module.topic);
+				sprintf((char*)wifi_module.topic,"%s%f",MQTT_AQI_TOPIC, AQI);
+				wifi_module.publish_flag = true;
+				wifi_module.publish_indx = IDLE_INDEX;
+			}
 		/* Run Task for every 5 secs */
-		vTaskDelay(pdMS_TO_TICKS(5000));
+		vTaskDelay(pdMS_TO_TICKS(20000));
 	}
 }
 
@@ -78,6 +87,7 @@ float GP2Y101_GetData( void )
 	float voltageMeasured = 0, calcVoltage = 0, dustDensity = 0;
 	/* Take the Mutex */
 	xSemaphoreTake(xMu_ADC1_MB, portMAX_DELAY);
+	//vTaskSuspendAll();
 	/* Turn On the  LED*/
 	AQI_LED_ON();
 	GP2Y101_Delay(SAMPLINGTIME);    
@@ -96,6 +106,7 @@ float GP2Y101_GetData( void )
 	
 	/* Give back the Mutex */
 	xSemaphoreGive( xMu_ADC1_MB );
+	//xTaskResumeAll();
 	/* Assuming ADC to be in 12 Bit Mode */
 	/* Can check ADC1 CFGR1 Register */
 	voltageMeasured = ADC_Store;

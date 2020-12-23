@@ -26,7 +26,7 @@ uint8_t pcDebugBuffer[50];
 QueueHandle_t xDebugQueue; 
 SemaphoreHandle_t xDebugQueueMutex; 
 SemaphoreHandle_t xUART1Mutex;
-char pcSystemStatusBuff[150];
+//char pcSystemStatusBuff[150];
  
 /* Exten handles */
 extern UART_HandleTypeDef huart1;

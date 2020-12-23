@@ -334,7 +334,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;   ../Drivers/STM32F1xx_HAL_Driver/Inc;   ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;   ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;   ../Drivers/CMSIS/Include;   ..\User\inc;   ../Middlewares/Third_Party/FreeRTOS/Source/include;   ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;   ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3</IncludePath>
+              <IncludePath>../Core/Inc;    ../Drivers/STM32F1xx_HAL_Driver/Inc;    ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;    ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;    ../Drivers/CMSIS/Include;    ..\User\inc;    ../Middlewares/Third_Party/FreeRTOS/Source/include;    ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;    ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;    ..\ESP Comm\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -421,6 +421,11 @@
               <FileName>stm32f1xx_hal_timebase_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_timebase_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>UartRingbuffer_multi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\src\UartRingbuffer_multi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -543,15 +548,9 @@
               <FilePath>..\User\src\GP2Y101.c</FilePath>
             </File>
             <File>
-<<<<<<< Updated upstream
-              <FileName>BMP280.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\src\BMP280.c</FilePath>
-=======
               <FileName>bmp280.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\src\bmp280.c</FilePath>
->>>>>>> Stashed changes
             </File>
           </Files>
         </Group>
@@ -611,23 +610,22 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
+          <GroupName>ESP Layer</GroupName>
+          <Files>
+            <File>
+              <FileName>WiFiComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ESP Comm\WiFiComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>mqtt_client.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ESP Comm\mqtt_client.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
   </Targets>
-
-  <RTE>
-    <apis/>
-    <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="4.3.0" condition="CMSIS Core">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.5.0"/>
-        <targetInfos>
-          <targetInfo name="Weather_Monitoring"/>
-        </targetInfos>
-      </component>
-    </components>
-    <files/>
-  </RTE>
 
 </Project>

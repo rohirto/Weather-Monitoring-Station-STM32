@@ -53,3 +53,5 @@ weather_monitoring\dht11.o: ..\User\inc\debug.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 weather_monitoring\dht11.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\dht11.o: ..\ESP Comm\inc\mqtt_client.h
+weather_monitoring\dht11.o: ..\ESP Comm\inc\WiFiComm.h

@@ -53,3 +53,6 @@ weather_monitoring\freertos_user.o: ..\User\inc\debug.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 weather_monitoring\freertos_user.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\freertos_user.o: ..\ESP Comm\inc\mqtt_client.h
+weather_monitoring\freertos_user.o: ..\ESP Comm\inc\WiFiComm.h
+weather_monitoring\freertos_user.o: ..\User\inc\UartRingBuffer_multi.h

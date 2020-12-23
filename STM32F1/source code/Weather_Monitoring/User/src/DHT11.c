@@ -15,9 +15,10 @@
 #include "task.h"
 #include "debug.h"
 #include "semphr.h"
+#include "mqtt_client.h"
 
 extern TIM_HandleTypeDef htim2;
-
+extern ESP_handle wifi_module;
 
 /* Global Variables */
 uint8_t Rh_byte1, Rh_byte2, Temp_byte1, Temp_byte2;
@@ -36,7 +37,6 @@ extern xSemaphoreHandle DHT_SEM;
 	*/
 void DHT11_Task(void* pvParams)
 {
-	int indx = 1;
 	uint8_t* debug_messagePtr;
 	for(;;)
 	{
@@ -50,9 +50,18 @@ void DHT11_Task(void* pvParams)
 		{
 			if(DHT11_Get_Data(&Temperature, &Humidity) == HAL_OK) 
 			{
-				sprintf((char*)pcDebugBuffer, "%d. Temp = %f C\t RH = %f \n", indx, Temperature, Humidity);
-				Debug_Mutex();  /* Sends the data to the Debug Queue */ 
-				indx++;
+				sprintf((char*)pcDebugBuffer, "Temp = %f C\t RH = %f \n", Temperature, Humidity);
+				Debug_Mutex();  /* Sends the data to the Debug Queue */
+				/* Publish data */
+				if(wifi_module.publish_flag == false && wifi_module.mqtt_connected == true && wifi_module.command_code == IDLE
+					&& wifi_module.publish_indx == HUMIDITY_INDEX)
+				{
+					sprintf((char*)wifi_module.topic,"%s",MQTT_HUMIDITY_TOPIC);
+					wifi_module.topic_len = strlen(wifi_module.topic);
+					sprintf((char*)wifi_module.topic,"%s%f",MQTT_HUMIDITY_TOPIC, Humidity);
+					wifi_module.publish_flag = true;
+					wifi_module.publish_indx = PRESSURE_INDEX;
+				}
 			}
 			else
 			{
@@ -63,7 +72,7 @@ void DHT11_Task(void* pvParams)
 		}
 		//xSemaphoreGive(DHT_SEM);
 		/* Run Task for every 5 secs */
-		vTaskDelay(pdMS_TO_TICKS(5000));
+		vTaskDelay(pdMS_TO_TICKS(20000));
 	}
 }
 
@@ -200,6 +209,7 @@ void DHT11_Start (void)
 	*/
 HAL_StatusTypeDef DHT11_Get_Data (float *Temperature, float *Humidity)
 {
+	
   DHT11_Start ();
 	if (DHT11_Check_Response () == HAL_OK)
 	{
@@ -282,3 +292,4 @@ HAL_StatusTypeDef DHT_Waiton_ExpectedState(uint8_t ExpectedState)
 	}
 	
 }
+

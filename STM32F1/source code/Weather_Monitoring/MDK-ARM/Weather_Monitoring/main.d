@@ -53,3 +53,5 @@ weather_monitoring\main.o: ..\User\inc\debug.h
 weather_monitoring\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
 weather_monitoring\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 weather_monitoring\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\main.o: ..\ESP Comm\inc\WiFiComm.h
+weather_monitoring\main.o: ..\User\inc\UartRingbuffer_multi.h

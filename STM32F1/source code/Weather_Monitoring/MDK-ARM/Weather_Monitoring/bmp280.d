@@ -53,3 +53,5 @@ weather_monitoring\bmp280.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/
 weather_monitoring\bmp280.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 weather_monitoring\bmp280.o: ..\User\inc\sensors.h
 weather_monitoring\bmp280.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+weather_monitoring\bmp280.o: ..\ESP Comm\inc\mqtt_client.h
+weather_monitoring\bmp280.o: ..\ESP Comm\inc\WiFiComm.h

@@ -53,3 +53,5 @@ weather_monitoring\gp2y101.o: ..\User\inc\debug.h
 weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h
 weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 weather_monitoring\gp2y101.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+weather_monitoring\gp2y101.o: ..\ESP Comm\inc\mqtt_client.h
+weather_monitoring\gp2y101.o: ..\ESP Comm\inc\WiFiComm.h
