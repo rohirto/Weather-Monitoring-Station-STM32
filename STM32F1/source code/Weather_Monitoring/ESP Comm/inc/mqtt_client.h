@@ -19,8 +19,8 @@
 	#define MQTT_BROKER							"\"io.adafruit.com\""
 	#define MQTT_PORT								1883
 	#define MQTT_CLIENT_ID					"STM32"
-	#define MQTT_USERNAME						"rohirto"
-	#define MQTT_PASSWORD						"aio_tOln21uIFAlKSRu3Yh70HhWt8DZS"
+	#define MQTT_USERNAME						"ADAFRUIT USERNAME"
+	#define MQTT_PASSWORD						"ADAFRUIT IO KEY"
 	#define MQTT_TEMPERATURE_TOPIC	"rohirto/feeds/temperature"
 	#define MQTT_HUMIDITY_TOPIC			"rohirto/feeds/humidity"
 	#define MQTT_PRESSURE_TOPIC			"rohirto/feeds/pressure"
