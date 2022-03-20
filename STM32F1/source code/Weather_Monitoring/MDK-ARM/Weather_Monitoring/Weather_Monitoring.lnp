@@ -3,7 +3,6 @@
 "weather_monitoring\freertos_user.o"
 "weather_monitoring\debug.o"
 "weather_monitoring\main.o"
-"weather_monitoring\freertos.o"
 "weather_monitoring\stm32f1xx_it.o"
 "weather_monitoring\stm32f1xx_hal_msp.o"
 "weather_monitoring\stm32f1xx_hal_timebase_tim.o"

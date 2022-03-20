@@ -445,34 +445,34 @@ HAL_StatusTypeDef ESP_Init()
 }
 
 
-void ESP_init_context (ESP_handle *wfcntxt) {
+//void ESP_init_context (ESP_handle *wfcntxt) {
 
-    
-    //wfcntxt->inittask_done  = 0xEE;
-    //wfcntxt->wfc_rssi       = 0;    // Initialize with Zero
-    //wfcntxt->cmd_mode       = 1;
-    //wfcntxt->mqtt_progress  = 0;
-    //wfcntxt->wfc_inact      = WFC_DEFAULT_AP_INACT;
-    //wfcntxt->mqtt_port      = WFC_DEFAULT_MQTT_PORT;
-    //wfcntxt->tcp_port       = WFC_DEFAULT_TCP_PORT;
-    //wfcntxt->keep_alive     = WFC_DEFAULT_KEEP_ALIVE;
-    //wfcntxt->data_mode      = LOCAL_MODE;
-    
-    //wfcntxt->mqtt_connected = 0;
-    //wfcntxt->tcpserverstart = 0;
-    
-	//wfcntxt->wfc_mode    = WFC_STATION;
-    
-    //wfcntxt->dfu_state   = NO_DFU;
-    //wfcntxt->wps_state   = WPS_DISABLE;
-    //wfcntxt->power_state = MAX_PERF;
-    wfcntxt->data_callback      = NULL;
-    wfcntxt->cmdresp_callback      = NULL;
-    //memset (&wfcntxt->cred_data, 0, sizeof (WFC_CRED));
-        
-    // Init the RX COMM layer call back function
-    //CommCallback_Init (uart_callback); 
-}
+//    
+//    //wfcntxt->inittask_done  = 0xEE;
+//    //wfcntxt->wfc_rssi       = 0;    // Initialize with Zero
+//    //wfcntxt->cmd_mode       = 1;
+//    //wfcntxt->mqtt_progress  = 0;
+//    //wfcntxt->wfc_inact      = WFC_DEFAULT_AP_INACT;
+//    //wfcntxt->mqtt_port      = WFC_DEFAULT_MQTT_PORT;
+//    //wfcntxt->tcp_port       = WFC_DEFAULT_TCP_PORT;
+//    //wfcntxt->keep_alive     = WFC_DEFAULT_KEEP_ALIVE;
+//    //wfcntxt->data_mode      = LOCAL_MODE;
+//    
+//    //wfcntxt->mqtt_connected = 0;
+//    //wfcntxt->tcpserverstart = 0;
+//    
+//	//wfcntxt->wfc_mode    = WFC_STATION;
+//    
+//    //wfcntxt->dfu_state   = NO_DFU;
+//    //wfcntxt->wps_state   = WPS_DISABLE;
+//    //wfcntxt->power_state = MAX_PERF;
+//    wfcntxt->data_callback      = NULL;
+//    wfcntxt->cmdresp_callback      = NULL;
+//    //memset (&wfcntxt->cred_data, 0, sizeof (WFC_CRED));
+//        
+//    // Init the RX COMM layer call back function
+//    //CommCallback_Init (uart_callback); 
+//}
 
 
 

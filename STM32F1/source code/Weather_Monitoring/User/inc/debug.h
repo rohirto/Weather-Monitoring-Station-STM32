@@ -39,7 +39,7 @@ extern SemaphoreHandle_t xDebugQueueMutex;
 extern SemaphoreHandle_t xUART1Mutex;
 /* Function Prototypes */
 void prvDebug_Task (void* pvParameters);
-void System_Status(void *pvParameters);
+//void System_Status(void *pvParameters);
 void Debug_Print(unsigned char *pcMessage);
 #ifdef __cplusplus
 extern "C" {

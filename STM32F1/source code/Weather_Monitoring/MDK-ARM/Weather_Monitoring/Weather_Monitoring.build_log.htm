@@ -27,39 +27,81 @@ Project File Date:  12/15/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Weather_Monitoring'
+compiling main.c...
+..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
+  	
+..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
+  	#endif
+../Core/Src/main.c: 2 warnings, 0 errors
+compiling freertos_user.c...
+..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
+  	
+..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\ESP Comm\inc\mqtt_client.h(93): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\User\src\freertos_user.c(197): warning:  #1-D: last line of file ends without a newline
+  }
+..\User\src\freertos_user.c: 4 warnings, 0 errors
+compiling DHT11.c...
+..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
+  	
+..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\ESP Comm\inc\mqtt_client.h(93): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\User\src\DHT11.c: 3 warnings, 0 errors
+compiling GP2Y101.c...
+..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
+  	
+..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\ESP Comm\inc\mqtt_client.h(93): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\User\src\GP2Y101.c: 3 warnings, 0 errors
 compiling bmp280.c...
 ..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
   	
-..\User\inc\sensors.h(266): warning:  #1-D: last line of file ends without a newline
-  	
 ..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
   	#endif
-..\ESP Comm\inc\mqtt_client.h(92): warning:  #1-D: last line of file ends without a newline
+..\ESP Comm\inc\mqtt_client.h(93): warning:  #1-D: last line of file ends without a newline
   	#endif
-..\User\src\bmp280.c(97): warning:  #177-D: variable "bme280p" was declared but never referenced
+..\User\src\bmp280.c(112): warning:  #177-D: variable "bme280p" was declared but never referenced
   	bool bme280p = bmp280.id == BME280_CHIP_ID;
+..\User\src\bmp280.c(422): warning:  #1-D: last line of file ends without a newline
+  }
 ..\User\src\bmp280.c: 5 warnings, 0 errors
-compiling DHT11.c...
-..\User\inc\sensors.h(266): warning:  #1-D: last line of file ends without a newline
-  	
+compiling WiFiComm.c...
 ..\User\inc\debug.h(50): warning:  #1-D: last line of file ends without a newline
   	
 ..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
   	#endif
-..\ESP Comm\inc\mqtt_client.h(92): warning:  #1-D: last line of file ends without a newline
+..\ESP Comm\inc\mqtt_client.h(93): warning:  #1-D: last line of file ends without a newline
   	#endif
-..\User\src\DHT11.c: 4 warnings, 0 errors
+..\ESP Comm\WiFiComm.c(260): warning:  #111-D: statement is unreachable
+  				break;
+..\ESP Comm\WiFiComm.c(368): warning:  #111-D: statement is unreachable
+  			break;
+..\ESP Comm\WiFiComm.c(548): warning:  #1-D: last line of file ends without a newline
+  }
+..\ESP Comm\WiFiComm.c: 6 warnings, 0 errors
+compiling mqtt_client.c...
+..\ESP Comm\inc\WiFiComm.h(179): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\ESP Comm\inc\mqtt_client.h(93): warning:  #1-D: last line of file ends without a newline
+  	#endif
+..\ESP Comm\mqtt_client.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=29424 RO-data=428 RW-data=272 ZI-data=19560  
+Program Size: Code=29424 RO-data=428 RW-data=268 ZI-data=19564  
 FromELF: creating hex file...
-"Weather_Monitoring\Weather_Monitoring.axf" - 0 Error(s), 9 Warning(s).
+"Weather_Monitoring\Weather_Monitoring.axf" - 0 Error(s), 25 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   C:\Users\rohirto\Desktop\rohirto\Weather Monitoring Station\Weather-Monitoring-Station-STM32\STM32F1\source code\Weather_Monitoring\MDK-ARM\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:07
+Build Time Elapsed:  00:00:16
 </pre>
 </body>
 </html>

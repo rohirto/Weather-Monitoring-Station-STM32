@@ -55,6 +55,8 @@ float GP2Y101_GetData( void );
 
 #ifdef BMP280
 
+#define SEALEVELPRESSURE_HPA (1013.25)
+
 #include <stdbool.h>
 
 /**
@@ -259,6 +261,7 @@ HAL_StatusTypeDef BMP280_ReadCalibrationDdata(BMP280_HandleTypedef *dev);
 HAL_StatusTypeDef BMP280_ReadFloat(BMP280_HandleTypedef *dev, float *temperature, float *pressure);	
 HAL_StatusTypeDef BMP280_ReadFloat24(BMP280_HandleTypedef *dev, float *temperature);
 HAL_StatusTypeDef BMP_Read_data24(BMP280_HandleTypedef *dev, uint8_t addr, int32_t *value);
+HAL_StatusTypeDef bmp280_altitude_calc(float* pressu, float* alt);
 #endif
 	
 	

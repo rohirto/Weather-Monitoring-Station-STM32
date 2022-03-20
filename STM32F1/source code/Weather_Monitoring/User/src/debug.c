@@ -77,18 +77,18 @@ void Debug_Print(unsigned char *pcMessage)
 }
 
 
-void System_Status(void *pvParameters)
-{
-//  uint8_t* debug_messagePtr;
-    for(;;)
-    {    
-        
-       // vTaskList(pcSystemStatusBuff);
-         
-        /* Delay */
-        vTaskDelay(pdMS_TO_TICKS(20000));
-       
-       
-   }
-}
+//void System_Status(void *pvParameters)
+//{
+////  uint8_t* debug_messagePtr;
+//    for(;;)
+//    {    
+//        
+//       // vTaskList(pcSystemStatusBuff);
+//         
+//        /* Delay */
+//        vTaskDelay(pdMS_TO_TICKS(20000));
+//       
+//       
+//   }
+//}
 

@@ -582,66 +582,66 @@ static void MX_GPIO_Init(void)
 * @retval none
 * Interrpt callback after recieving 1 byte on UART1 
 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	if( huart->Instance == USART1)
-	{
-		/* Transmit that data back - ECHO Function */
-		HAL_UART_Transmit(&huart3, &c1, 1, 100);
-		
-		/* Recieve 1 Byte in Interrupt Mode */
-		HAL_UART_Receive_IT(&huart1, &c1, 1);
-		
-	}
-	if(huart->Instance == USART3)
-	{
-		/* Transmit that data back - ECHO Function */
-		HAL_UART_Transmit(&huart1, &c2, 1, 100);
-		
-		HAL_UART_Receive_IT(&huart3, &c2, 1);
-		
-	}
-}
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//{
+//	if( huart->Instance == USART1)
+//	{
+//		/* Transmit that data back - ECHO Function */
+//		HAL_UART_Transmit(&huart3, &c1, 1, 100);
+//		
+//		/* Recieve 1 Byte in Interrupt Mode */
+//		HAL_UART_Receive_IT(&huart1, &c1, 1);
+//		
+//	}
+//	if(huart->Instance == USART3)
+//	{
+//		/* Transmit that data back - ECHO Function */
+//		HAL_UART_Transmit(&huart1, &c2, 1, 100);
+//		
+//		HAL_UART_Receive_IT(&huart3, &c2, 1);
+//		
+//	}
+//}
 /**
   * @brief Sets the system clock from 8MHz internal to 48 MHz external through PLL
   * @param None
   * @retval None
   */
-void Clock_48MHz (void)
-{
-    RCC_OscInitTypeDef OscInitStruct;
-    RCC_ClkInitTypeDef ClkInitStruct;
-    
-    OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-    OscInitStruct.HSEState = RCC_HSE_ON;
-    OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-    OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-    OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
-    //OscInitStruct.PLL.PREDIV = HAL_RCC_PREDIV_DIV1;
-    
-    if (HAL_RCC_OscConfig(&OscInitStruct) != HAL_OK)
-    {
-        //Error_Handler();
-    }
-    
-    ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1;
-    ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-    ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-    ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-    if (HAL_RCC_ClockConfig(&ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
-    {
-        //Error_Handler();
-    }
-    
-    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-    
-    //Set priority of SYSTick
-    NVIC_EnableIRQ(SysTick_IRQn);
-    NVIC_SetPriority(SysTick_IRQn, 3);
-    
-}
-/* USER CODE END 4 */
+//void Clock_48MHz (void)
+//{
+//    RCC_OscInitTypeDef OscInitStruct;
+//    RCC_ClkInitTypeDef ClkInitStruct;
+//    
+//    OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+//    OscInitStruct.HSEState = RCC_HSE_ON;
+//    OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+//    OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+//    OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+//    //OscInitStruct.PLL.PREDIV = HAL_RCC_PREDIV_DIV1;
+//    
+//    if (HAL_RCC_OscConfig(&OscInitStruct) != HAL_OK)
+//    {
+//        //Error_Handler();
+//    }
+//    
+//    ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+//                              |RCC_CLOCKTYPE_PCLK1;
+//    ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+//    ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+//    ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+//    if (HAL_RCC_ClockConfig(&ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+//    {
+//        //Error_Handler();
+//    }
+//    
+//    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+//    
+//    //Set priority of SYSTick
+//    NVIC_EnableIRQ(SysTick_IRQn);
+//    NVIC_SetPriority(SysTick_IRQn, 3);
+//    
+//}
+///* USER CODE END 4 */
 
 
  /**

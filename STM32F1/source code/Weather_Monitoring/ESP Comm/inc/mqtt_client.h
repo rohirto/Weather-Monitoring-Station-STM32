@@ -20,7 +20,7 @@
 	#define MQTT_PORT								1883
 	#define MQTT_CLIENT_ID					"STM32"
 	#define MQTT_USERNAME						"rohirto"
-	#define MQTT_PASSWORD						"aio_tOln21uIFAlKSRu3Yh70HhWt8DZS"
+	#define MQTT_PASSWORD						"aio_FHZk43hBz4VEQEMO0TmBE0vXkwIt"
 	#define MQTT_TEMPERATURE_TOPIC	"rohirto/feeds/temperature"
 	#define MQTT_HUMIDITY_TOPIC			"rohirto/feeds/humidity"
 	#define MQTT_PRESSURE_TOPIC			"rohirto/feeds/pressure"
@@ -33,6 +33,7 @@
 	#define HUMIDITY_INDEX					2
 	#define PRESSURE_INDEX					3
 	#define AQI_INDEX								4
+	#define ALTITUDE_INDEX					5
 	
 	
 	#define MQTT_LVL								0x03

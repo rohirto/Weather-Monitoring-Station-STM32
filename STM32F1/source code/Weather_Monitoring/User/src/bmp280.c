@@ -28,13 +28,14 @@
 
 /* Includes */
 #include <stdio.h>
+//#include <math.h>
 #include "main.h"
 #include "debug.h"
 #include "sensors.h"
 #include "mqtt_client.h"
 
 /* Global Variables */
-float pressure, temperature, humidity;
+float pressure, temperature, humidity, altitude;
 BMP280_HandleTypedef bmp280;
 /* Externs */
 
@@ -57,6 +58,11 @@ void BMP280_Task(void *pvParams)
 			Debug_Mutex();
 			//HAL_Delay(2000);
 		}
+		/* Altitude calc */
+//		if(bmp280_altitude_calc(&pressure,&altitude) != HAL_OK)
+//		{
+//			//ERROR
+//		}
 		sprintf((char *)pcDebugBuffer,"Pressure: %.2f Pa, Temperature: %.2f C \n",pressure, temperature);
 		Debug_Mutex();
 		/* Publish Data */
@@ -78,6 +84,15 @@ void BMP280_Task(void *pvParams)
 				wifi_module.publish_flag = true;
 				wifi_module.publish_indx = AQI_INDEX;
 			}
+//		if(wifi_module.publish_flag == false && wifi_module.mqtt_connected == true && wifi_module.command_code == IDLE
+//			&& wifi_module.publish_indx == ALTITUDE_INDEX) 
+//		{
+//			sprintf((char*)wifi_module.topic,"%s",MQTT_ALTITUDE_TOPIC);
+//			wifi_module.topic_len = strlen(wifi_module.topic);
+//			sprintf((char*)wifi_module.topic,"%s%f",MQTT_PRESSURE_TOPIC, altitude);
+//			wifi_module.publish_flag = true;
+//			wifi_module.publish_indx = IDLE_INDEX;
+//		}
 		vTaskDelay(pdMS_TO_TICKS(20000));
   }
 }
@@ -107,6 +122,15 @@ void bmp280_init_default_params(bmp280_params_t *params) {
 	params->standby = BMP280_STANDBY_250;
 }
 
+HAL_StatusTypeDef bmp280_altitude_calc(float* pressu, float* alt)
+{
+	if(pressu == NULL || alt == NULL)
+	{
+		return HAL_ERROR;
+	}
+	//*alt = 44330.0 * (1.0 - power((*pressu/100) / SEALEVELPRESSURE_HPA, 0.1903));
+	return HAL_OK;
+}
 static bool read_register16(BMP280_HandleTypedef *dev, uint8_t addr, uint16_t *value) {
 	uint16_t tx_buff;
 	uint8_t rx_buff[2];
